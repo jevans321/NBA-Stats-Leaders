@@ -12,11 +12,17 @@ $ sudo lsof -t -i tcp:3000 | xargs kill -9
 ### Mongo DB
 Start
 $ mongod
+Shutdown
+$ pkill mongod
 Verify that MongoDB has started successfully by checking the process output for the following line:
 [initandlisten] waiting for connections on port 27017
 
 Start Mongo Shell
 $ mongo --host 127.0.0.1:27017
+
+> db.pointsleaders.find()
+Empty collection
+> db.pointsleaders.remove({})
 
 
 

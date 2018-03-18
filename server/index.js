@@ -22,9 +22,9 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 // app.use(express.static(__dirname + '/../node_modules'));
 
 // Non Working Fetch API Function
-var fetchApiData = function(seasonParam, callback) {
+var fetchApiData = function(targetSeason, targetCategory, callback) {
   let options = {
-    url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=PTS&Season=' + seasonParam + '&SeasonType=Regular%20Season&Scope=S',
+    url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
     headers: {
       'User-Agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),
       'Accept-Encoding': '*',
@@ -32,7 +32,7 @@ var fetchApiData = function(seasonParam, callback) {
       'origin': ('http://stats.nba.com')
     }
   };
-  console.log('Options Object:......', options);
+  //console.log('Options Object:......', options);
   request.get(options, (error, response, body) => {
 
     //console.log("Body:........", body);
@@ -54,15 +54,16 @@ var fetchApiData = function(seasonParam, callback) {
   // - possibly populates the View with data
 app.post('/player-data', (req, res) => {
   let season = req.body.season;
+  let category = req.body.category;
   //console.log('Player Data:....', data['playerData' + season].resource);
   //dbItems.createAndSaveDocuments(data['playerData' + season]);
 
   // console.log('Season Variable:..........', season);
-  fetchApiData(season, (err, body) => {
+  fetchApiData(season, category, (err, body) => {
     if(err) {
       console.log(err);
     } else {
-      console.log('API body: ', body);
+      //console.log('API body: ', body);
       dbItems.createAndSaveDocuments(body);
       res.send(body);
     }
@@ -71,7 +72,8 @@ app.post('/player-data', (req, res) => {
 
 // 'GET Request Handler' to '/player-data'' endpoint this middlewear? is retrieving database data
 app.get('/player-data', (req, res) => {
-  dbItems.selectAll(function(err, data) {
+  console.log('Get Handler Request data: ', req.query);
+  dbItems.selectAll(req.query.season, req.query.category, function(err, data) {
     if(err) {
       res.sendStatus(500);
     } else {
