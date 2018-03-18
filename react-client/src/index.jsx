@@ -6,7 +6,7 @@ import Search from './components/Search.jsx';
 import Navbar from './components/CustomNavbar.jsx';
 import axios from 'axios';
 import GoogleImages from 'google-images';
-import { Grid, Col, Image, Row } from 'react-bootstrap';
+import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
 //const GoogleImages = require('google-images');
 // const got = require('got');
 
@@ -16,7 +16,7 @@ import { Grid, Col, Image, Row } from 'react-bootstrap';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       items: []
     }
   }
@@ -28,22 +28,22 @@ class App extends React.Component {
 
   getDatabasePlayerData(val) {
     $.ajax({
-      url: '/player-data', 
+      url: '/player-data',
       success: (data) => { // "data" is an array of player-data Objects from the mongo database
         // create new array to store each object in order by "rank" property
         let rankArray = [];
         // loop through each obj in data array
-        for(var i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++) {
           let obj = data[i];
-          if(obj.season === val){
+          if (obj.season === val) {
             rankArray[obj.rank] = obj;
-            if(rankArray.length > 20){
+            if (rankArray.length > 20) {
               break;
             }
           }
         };
-      //  console.log('rankArray from mongo DB', rankArray);
-        if(!rankArray.length){
+        //  console.log('rankArray from mongo DB', rankArray);
+        if (!rankArray.length) {
           return false;
         }
         this.setState({
@@ -57,43 +57,43 @@ class App extends React.Component {
   }
 
   handleAddSeason(val) {
-    if(!this.getDatabasePlayerData(val)) {
+    if (!this.getDatabasePlayerData(val)) {
       // get data from API
 
       // Post API data to database
       axios.post('/player-data', {
         season: val
       })
-      .then((apiObj) => {
-        console.log('API Object: ', apiObj.data);
-        let rankArray = [];
-        let playersApiArray = apiObj.data.resultSet.rowSet;
-        //playersApiArray.forEach((player) => {
-        for(var i = 0; i < playersApiArray.length; i++) {
-          let player = playersApiArray[i];
-          let playerObjfromApi = { 
-            playerId:   player[0],
-            season:     val,
-            rank:       player[1],
-            player:     player[2],
-            team:       player[3],
-            points:     player[player.length - 2]
+        .then((apiObj) => {
+          console.log('API Object: ', apiObj.data);
+          let rankArray = [];
+          let playersApiArray = apiObj.data.resultSet.rowSet;
+          //playersApiArray.forEach((player) => {
+          for (var i = 0; i < playersApiArray.length; i++) {
+            let player = playersApiArray[i];
+            let playerObjfromApi = {
+              playerId: player[0],
+              season: val,
+              rank: player[1],
+              player: player[2],
+              team: player[3],
+              points: player[player.length - 2]
+            }
+
+            rankArray[playerObjfromApi.rank] = playerObjfromApi;
+            if (rankArray.length > 20) {
+              break;
+            }
+
           }
-          
-          rankArray[playerObjfromApi.rank] = playerObjfromApi;
-          if(rankArray.length > 20){
-            break;
-          }
-          
-        }
-        this.setState({
-          items: rankArray
+          this.setState({
+            items: rankArray
+          })
+          console.log(val + ' player data posted to database');
         })
-        console.log(val + ' player data posted to database');
-      })
-      .catch(function (error) {
-        console.log('Axios Error.......', error);
-      });
+        .catch(function (error) {
+          console.log('Axios Error.......', error);
+        });
     }
 
     this.getDatabasePlayerData(val);
@@ -114,17 +114,36 @@ class App extends React.Component {
     //     console.log('err', xhr, status, error);
     //   }
     // });
-    
-    
+
+
   }
 
-  render () {
+  render() {
     return (
-      <div> 
+      <div>
         <Navbar />
-        <Image src="http://images.performgroup.com/di/library/omnisport/92/8a/lin-jeremy-usnews-getty-ftr_1hu0s4ebohsuj1ljgmbg64x2jk.jpg?t=-875954615" className="header-image"/>
+        <div className="header-image">
+        </div>
 
-      
+        <div>
+        <Grid>
+          <Row>
+            <Col xs={12} sm={8} smOffset={2}>
+            <Jumbotron>
+              <h1>Hello, world!</h1>
+              <p>
+                This is a simple hero unit, a simple jumbotron-style component for calling
+                extra attention to featured content or information.
+              </p>
+              <p>
+                <Button bsStyle="primary">Learn more</Button>
+              </p>
+            </Jumbotron>
+            </Col>
+            </Row>
+          </Grid>
+        </div>
+        
       </div>
     )
   }

@@ -2,6 +2,21 @@
   width: 100%;
   margin-top: -2em;
   margin-bottom: 2em;
+  background-image: url(http://images.performgroup.com/di/library/omnisport/92/8a/lin-jeremy-usnews-getty-ftr_1hu0s4ebohsuj1ljgmbg64x2jk.jpg?t=-875954615);
+  
+  background-position: center;
+  background-repeat:   no-repeat;
+  background-size: 100% auto;
+  background-position-y: -26em;
+  height: 300px;
+}
+
+.jumbotron {
+  margin-top: -2em;
+  background-position: center;
+  background-repeat:   no-repeat;
+  background-size: 100% auto;
+  
 }
 
 /* body {
