@@ -62,7 +62,9 @@ app.post('/player-data', (req, res) => {
     if(err) {
       console.log(err);
     } else {
+      console.log('API body: ', body);
       dbItems.createAndSaveDocuments(body);
+      res.send(body);
     }
   });
 });

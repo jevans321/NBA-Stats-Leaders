@@ -1,4 +1,10 @@
-body {
+.header-image {
+  width: 100%;
+  margin-top: -2em;
+  margin-bottom: 2em;
+}
+
+/* body {
   background: black;
 }
 
@@ -37,3 +43,30 @@ article {
     padding: 1em;
     overflow: hidden;
 }
+
+.main {
+  margin: 20px;
+}
+
+.nav {
+    background-color: #3498DB;
+    margin: 0px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-selected {
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+.nav-unselected {
+    padding: 5px;
+    margin-right: 5px;
+    font-size: 1.1em;
+  } */
