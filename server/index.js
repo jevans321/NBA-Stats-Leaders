@@ -72,7 +72,8 @@ app.post('/player-data', (req, res) => {
 
 // 'GET Request Handler' to '/player-data'' endpoint this middlewear? is retrieving database data
 app.get('/player-data', (req, res) => {
-  console.log('Get Handler Request data: ', req.query);
+  console.log('Get Handler Request Query: ', req.query);
+
   dbItems.selectAll(req.query.season, req.query.category, function(err, data) {
     if(err) {
       res.sendStatus(500);

@@ -63,6 +63,10 @@ var createAndSaveDocuments = function(leaderObject) {
   });
 };
 
+var test = function(targetSeason, targetCategory) {
+  return PlayerStats.find({season: targetSeason, category: targetCategory}).count() > 0;
+}; 
+
 // selects all objects from 'PlayerStats' model class
   // my theory is this returns the data as an array of player objects from the database
 var selectAll = function(targetSeason, targetCategory, callback) {

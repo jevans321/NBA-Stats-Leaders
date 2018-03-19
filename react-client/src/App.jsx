@@ -37,150 +37,83 @@ class App extends Component {
 
   componentDidMount() {
     // Get player data from database to show default PTS Leaders content on initial page load
-    //this.getDatabasePlayerData("2016-17");
-    this.handleAddSeason("2016-17");
+    this.getPlayerData("2016-17");
   }
 
-  getDatabasePlayerData(targetSeason) {
-    // query database for year and
-    // post targetSeason and category
-    // $.ajax({
-    //   url: '/player-data',
-    //   success: (data) => { // "data" is an array of player-data Objects from the mongo database
-    //     // create new array to store each object in order by "rank" property
-    //     let rankArray = [];
-    //     // loop through each obj in data array
-    //     for (var i = 0; i < data.length; i++) {
-    //       let obj = data[i];
-    //       if (obj.season === targetSeason) {
-    //         rankArray[obj.rank] = obj;
-    //         if (rankArray.length > 20) {
-    //           break;
-    //         }
-    //       }
-    //     };
-    //     //  console.log('rankArray from mongo DB', rankArray);
-    //     if (!rankArray.length) {
-    //       return false;
-    //     }
-    //     this.setState({
-    //       items: rankArray
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
+  getPlayerData(targetSeason) {
 
-    axios.get('/player-data', {
+    return axios.get('/player-data', {
       params: {
         season: targetSeason,
         category: this.state.category
       }
     })
-    .then(function (response) { // "response" is an array of player-data Objects from the mongo database
-      console.log('Axios response:', response);
-      let rankArray = [];
+    .then((response) => {
+      // "response.data" is an array of player-data Objects from the mongo database
+      console.log('Axios response:', response.data);
+
+      // ---------- If data not in DB, Call API -------------------------------------------------------
+      if (!response.data.length) {
+        console.log('Data is being sent from API')
+        // --- Send post request API, to store API data to DB, this will also retrieve data from API
+        axios.post('/player-data', {
+          season: targetSeason,
+          category: this.state.category
+        })
+          .then((apiObj) => {
+            // ------------ Immediately send data from API to the View -------------
+            console.log('API Object: ', apiObj.data);
+            let rankArray = [];
+            let playersApiArray = apiObj.data.resultSet.rowSet;
+  
+            for (var i = 0; i < playersApiArray.length; i++) {
+              let player = playersApiArray[i];
+              let playerObjfromApi = {
+                playerId: player[0],
+                season: targetSeason,
+                rank: player[1],
+                player: player[2],
+                team: player[3],
+                points: player[player.length - 2],
+                assists: player[player.length - 6],
+                category: this.state.category
+              }
+  
+              rankArray[playerObjfromApi.rank] = playerObjfromApi;
+              if (rankArray.length > 20) {
+                break;
+              }
+  
+            }
+            this.setState({
+              items: rankArray
+            })
+            console.log(targetSeason + ' player data posted to database');
+          })
+          .catch(function (error) {
+            console.log('Axios Error.......', error);
+          });
+      } else {
+        // ------ Send data from DB to View --------------------------------------------------
+        console.log('Data is being sent from DB')
+        let rankArray = [];
         // loop through each obj in data array
-        for (var i = 0; i < response.length; i++) {
-          let obj = response[i];
+        for (var i = 0; i < response.data.length; i++) {
+          let obj = response.data[i];
           rankArray[obj.rank] = obj;
           if (rankArray.length > 20) {
             break;
           }
         };
-        //  console.log('rankArray from mongo DB', rankArray);
-        if (!rankArray.length) {
-          return false;
-        }
+
         this.setState({
           items: rankArray
         })
+      }
     })
     .catch(function (error) {
       console.log(error);
     });
-
-    // Post API data to database
-    // axios.post('/player-data', {
-    //   season: targetSeason
-    // })
-    //   .then((dbData) => {
-    //     console.log('DB Data: ', dbData);
-
-    //     this.setState({
-    //       items: rankArray
-    //     })
-    //   })
-    //   .catch(function (error) {
-    //     console.log('Axios Error.......', error);
-    //   });
-  }
-
-  handleAddSeason(targetSeason) {
-    if (!this.getDatabasePlayerData(targetSeason)) {
-      // get data from API
-
-      // Post API data to database
-      axios.post('/player-data', {
-        season: targetSeason,
-        category: this.state.category
-      })
-        .then((apiObj) => {
-          console.log('API Object: ', apiObj.data);
-          let rankArray = [];
-          let playersApiArray = apiObj.data.resultSet.rowSet;
-
-          for (var i = 0; i < playersApiArray.length; i++) {
-            let player = playersApiArray[i];
-            let playerObjfromApi = {
-              playerId: player[0],
-              season: targetSeason,
-              rank: player[1],
-              player: player[2],
-              team: player[3],
-              points: player[player.length - 2],
-              assists: player[player.length - 6],
-              category: this.state.category
-            }
-
-            rankArray[playerObjfromApi.rank] = playerObjfromApi;
-            if (rankArray.length > 20) {
-              break;
-            }
-
-          }
-          this.setState({
-            items: rankArray
-          })
-          console.log(targetSeason + ' player data posted to database');
-        })
-        .catch(function (error) {
-          console.log('Axios Error.......', error);
-        });
-    } else {
-
-      this.getDatabasePlayerData(targetSeason);
-
-    }
-    //console.log('State Items Array.....', this.state.items);
-    // $.ajax({
-    //   url: '/player-data',
-    //   method: 'POST',
-    //   data: JSON.stringify({
-    //     season: val
-    //   }),
-    //   contentType: 'application/json',
-    //   success: (response) => {
-    //     console.log('SUCCESS POST...............', response);
-    //     //this.ajaxCall(val);
-    //     // do setstate here with data 
-    //   },
-    //   error: (xhr, status, error) => {
-    //     console.log('err', xhr, status, error);
-    //   }
-    // });
-
 
   }
 
