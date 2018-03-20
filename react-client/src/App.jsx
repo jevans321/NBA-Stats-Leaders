@@ -35,7 +35,7 @@ class App extends Component {
       //view: viewVal
     });
     if(categoryVal !== 'home' && categoryVal !== 'about'){
-      this.getPlayerData("2016-17", categoryVal);
+      this.getPlayerData("2017-18", categoryVal);
     }
     // console.log('state items array: ', this.state.items);
     // console.log('changeCat State Category: ', this.state.category);
@@ -66,14 +66,17 @@ class App extends Component {
         for (var i = 0; i < playersApiArray.length; i++) {
           let player = playersApiArray[i];
           let playerObjfromApi = {
-            playerId: player[0],
-            season: targetSeason,
-            rank: player[1],
-            player: player[2],
-            team: player[3],
-            points: player[player.length - 2],
-            assists: player[player.length - 6],
-            category: targetCategory
+            playerId:   player[0],
+            season:     targetSeason,
+            rank:       player[1],
+            player:     player[2],
+            team:       player[3],
+            points:     player[player.length - 2],
+            assists:    player[player.length - 6],
+            blocks:     player[player.length - 4],
+            rebounds:   player[player.length - 7],
+            efficiency: player[player.length - 1],
+            category:   targetCategory
           }
 
           rankArray[playerObjfromApi.rank] = playerObjfromApi;
@@ -135,7 +138,7 @@ class App extends Component {
 
   renderView() {
     if (this.state.category === 'home') {
-      return <Home />
+      return <Home changeCat={this.changeCategory.bind(this)} />
     } else if (this.state.category === 'about') {
       return <About />
     } else {

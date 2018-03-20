@@ -19,6 +19,9 @@ var playerStatsSchema = mongoose.Schema({
   team:       String,
   points:     Number,
   assists:    Number,
+  blocks:     Number,
+  rebounds:   Number,
+  efficiency: Number,
   category:   String
 });
 
@@ -44,6 +47,9 @@ var createAndSaveDocuments = function(leaderObject) {
       team:       player[3],
       points:     player[player.length - 2],
       assists:    player[player.length - 6],
+      blocks:     player[player.length - 4],
+      rebounds:   player[player.length - 7],
+      efficiency: player[player.length - 1],
       category:   leaderObject.parameters.StatCategory
     });
     

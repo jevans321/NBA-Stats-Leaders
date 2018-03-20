@@ -42,7 +42,7 @@ export default class CustomNavbar extends Component {
                 Assists
               </span>
             </NavItem>
-            <NavItem eventKey={3} href="#">
+            <NavItem eventKey={4} href="#">
               <span className={this.props.category === 'BLK'
                 ? 'nav-selected'
                 : 'nav-unselected'}
@@ -50,7 +50,7 @@ export default class CustomNavbar extends Component {
                 Blocks
               </span>
             </NavItem>
-            <NavItem eventKey={3} href="#">
+            <NavItem eventKey={5} href="#">
               <span className={this.props.category === 'REB'
                 ? 'nav-selected'
                 : 'nav-unselected'}
@@ -58,7 +58,7 @@ export default class CustomNavbar extends Component {
                 Rebounds
               </span>
             </NavItem>
-            <NavItem eventKey={3} href="#">
+            <NavItem eventKey={6} href="#">
               <span className={this.props.category === 'EFF'
                 ? 'nav-selected'
                 : 'nav-unselected'}

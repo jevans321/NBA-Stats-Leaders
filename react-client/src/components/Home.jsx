@@ -12,11 +12,14 @@ export default class Home extends Component {
     return (
       <Grid>
         <Jumbotron>
-        <h1>Hello, world!</h1>
-        <p>
-        This is a simple hero unit, a simple jumbotron-style component for calling
-        extra attention to featured content or information.
-        </p>
+          <h2>Welcome to NBA Stats Leaders</h2>
+          <p>
+            Search the NBA's leading statistical categories from the current season, all the way back to the 1946-47 season. See where the top players are ranked.
+          </p>
+          <p className="btn-toolbar">
+            <Button bsStyle="primary" onClick={() => this.props.changeCat('PTS', 'Points Leaders')} >Start Searching</Button>
+            <Button onClick={() => this.props.changeCat('about')} >About</Button>
+          </p>
         </Jumbotron>
       </Grid>
     )
