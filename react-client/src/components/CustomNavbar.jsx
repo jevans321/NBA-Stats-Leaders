@@ -42,6 +42,30 @@ export default class CustomNavbar extends Component {
                 Assists
               </span>
             </NavItem>
+            <NavItem eventKey={3} href="#">
+              <span className={this.props.category === 'BLK'
+                ? 'nav-selected'
+                : 'nav-unselected'}
+                onClick={() => this.props.changeCat('BlK', 'Block Leaders')}>
+                Blocks
+              </span>
+            </NavItem>
+            <NavItem eventKey={3} href="#">
+              <span className={this.props.category === 'REB'
+                ? 'nav-selected'
+                : 'nav-unselected'}
+                onClick={() => this.props.changeCat('REB', 'Rebound Leaders')}>
+                Rebounds
+              </span>
+            </NavItem>
+            <NavItem eventKey={3} href="#">
+              <span className={this.props.category === 'EFF'
+                ? 'nav-selected'
+                : 'nav-unselected'}
+                onClick={() => this.props.changeCat('EFF', 'Efficiency Leaders')}>
+                Efficiency
+              </span>
+            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

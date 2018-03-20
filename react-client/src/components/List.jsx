@@ -12,7 +12,8 @@ const List = (props) => (
           <Search addSeason={props.addSeason.bind(this)}/>
         </Col>
         <Col xs={12} sm={8} smPull={4}>
-          { props.items.map(item => <ListItem item={item}/>)}
+          <h1>{props.appState.header}</h1>
+          {props.appState.items.map(item => <ListItem item={item}/>)}
         </Col>
 
       </Row>            

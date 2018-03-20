@@ -139,7 +139,7 @@ class App extends Component {
     } else if (this.state.category === 'about') {
       return <About />
     } else {
-      return <List items={this.state.items} addSeason={this.searchDataBySeason.bind(this)} />
+      return <List appState={this.state} addSeason={this.searchDataBySeason.bind(this)} />
     }
   }
 
