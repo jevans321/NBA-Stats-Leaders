@@ -9,6 +9,7 @@ const List = (props) => (
     <Grid>
       <Row className="show-grid text-center">
         <Col xs={12} sm={4} smPush={8}>
+          <h2 className="text-left">Enter Season</h2>
           <Search addSeason={props.addSeason.bind(this)}/>
         </Col>
         <Col xs={12} sm={8} smPull={4}>

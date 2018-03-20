@@ -7,6 +7,7 @@ import About from './components/About.jsx';
 import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Navbar from './components/CustomNavbar.jsx';
+import Spinner from './components/Spinner.jsx';
 import axios from 'axios';
 import GoogleImages from 'google-images';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
@@ -22,7 +23,8 @@ class App extends Component {
     this.state = {
       category: 'home',
       header: '',
-      items: []
+      items: [],
+      fetchInProgress: false
     }
 
     //this.changeCategory = this.changeCategory.bind(this);
@@ -80,22 +82,28 @@ class App extends Component {
           }
 
           rankArray[playerObjfromApi.rank] = playerObjfromApi;
-          if (rankArray.length > 20) {
+          if (rankArray.length > 50) {
             break;
           }
 
         }
         this.setState({
+          fetchInProgress: false,
           items: rankArray
         })
         console.log(targetSeason + ' player data posted to database');
       })
       .catch(function (error) {
         console.log('Axios Error.......', error);
+        this.setState({ fetchInProgress: false });
       });
   }
 
   getPlayerData(targetSeason, targetCategory) {
+
+    // before making call, set fetch flag
+    this.setState({ fetchInProgress: true });
+
     axios.get('/player-data', {
       params: {
         season: targetSeason,
@@ -120,18 +128,20 @@ class App extends Component {
         for (var i = 0; i < response.data.length; i++) {
           let obj = response.data[i];
           rankArray[obj.rank] = obj;
-          if (rankArray.length > 20) {
+          if (rankArray.length > 50) {
             break;
           }
         };
 
         this.setState({
+          fetchInProgress: false,
           items: rankArray
         })
       }
     })
     .catch(function (error) {
       console.log(error);
+      this.setState({ fetchInProgress: false });
     });
 
   }
@@ -152,11 +162,15 @@ class App extends Component {
       <div>
         <Navbar category={this.state.category} changeCat={this.changeCategory.bind(this)}/>
         <div>
-          <Image src="assets/lin-header.jpg" className="header-image" />        
-          {this.renderView()}    
+          <Image src="assets/lin-header.jpg" className="header-image" />
+          {
+            this.state.fetchInProgress
+                ? <Spinner />
+                : this.renderView()
+          }   
         </div>
       </div>
-    )
+    );
   }
 }
 
