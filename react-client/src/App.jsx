@@ -20,79 +20,95 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: 'AST',
+      category: 'home',
       header: '',
       items: []
     }
+
+    //this.changeCategory = this.changeCategory.bind(this);
   }
 
-  changeCategory(cat, title) {
+  changeCategory(categoryVal, headerVal) {
     this.setState({
-      category: cat,
-      header: title
+      category: categoryVal,
+      header: headerVal
+      //view: viewVal
     });
-    console.log('Change Cat Function State Category: ', this.state.category);
-    console.log('Change Cat Function State Header: ', this.state.header);
+    if(categoryVal !== 'home' && categoryVal !== 'about'){
+      this.getPlayerData("2016-17", categoryVal);
+    }
+    // console.log('state items array: ', this.state.items);
+    // console.log('changeCat State Category: ', this.state.category);
+    // console.log('changeCat State Header: ', this.state.header);
+    
   }
 
-  componentDidMount() {
-    // Get player data from database to show default PTS Leaders content on initial page load
-    this.getPlayerData("2016-17");
+  // componentDidMount() {
+  //   // Get player data from database to show default PTS Leaders content on initial page load
+  //   //this.getPlayerData("2016-17");
+  // }
+
+  searchDataBySeason(targetSeason) {
+    this.getPlayerData(targetSeason, this.state.category);
   }
 
-  getPlayerData(targetSeason) {
+  retrieveAndStoreApiData(targetSeason, targetCategory) {
+    axios.post('/player-data', {
+      season: targetSeason,
+      category: targetCategory
+    })
+      .then((apiObj) => {
+        // ------------ Immediately send data from API to the View -------------
+        console.log('API Object: ', apiObj.data);
+        let rankArray = [];
+        let playersApiArray = apiObj.data.resultSet.rowSet;
 
-    return axios.get('/player-data', {
+        for (var i = 0; i < playersApiArray.length; i++) {
+          let player = playersApiArray[i];
+          let playerObjfromApi = {
+            playerId: player[0],
+            season: targetSeason,
+            rank: player[1],
+            player: player[2],
+            team: player[3],
+            points: player[player.length - 2],
+            assists: player[player.length - 6],
+            category: targetCategory
+          }
+
+          rankArray[playerObjfromApi.rank] = playerObjfromApi;
+          if (rankArray.length > 20) {
+            break;
+          }
+
+        }
+        this.setState({
+          items: rankArray
+        })
+        console.log(targetSeason + ' player data posted to database');
+      })
+      .catch(function (error) {
+        console.log('Axios Error.......', error);
+      });
+  }
+
+  getPlayerData(targetSeason, targetCategory) {
+    axios.get('/player-data', {
       params: {
         season: targetSeason,
-        category: this.state.category
+        category: targetCategory
       }
     })
     .then((response) => {
       // "response.data" is an array of player-data Objects from the mongo database
-      console.log('Axios response:', response.data);
+      console.log('Axios Database response:', response.data);
 
       // ---------- If data not in DB, Call API -------------------------------------------------------
-      if (!response.data.length) {
+      if (!response.data.length) {//
         console.log('Data is being sent from API')
         // --- Send post request API, to store API data to DB, this will also retrieve data from API
-        axios.post('/player-data', {
-          season: targetSeason,
-          category: this.state.category
-        })
-          .then((apiObj) => {
-            // ------------ Immediately send data from API to the View -------------
-            console.log('API Object: ', apiObj.data);
-            let rankArray = [];
-            let playersApiArray = apiObj.data.resultSet.rowSet;
-  
-            for (var i = 0; i < playersApiArray.length; i++) {
-              let player = playersApiArray[i];
-              let playerObjfromApi = {
-                playerId: player[0],
-                season: targetSeason,
-                rank: player[1],
-                player: player[2],
-                team: player[3],
-                points: player[player.length - 2],
-                assists: player[player.length - 6],
-                category: this.state.category
-              }
-  
-              rankArray[playerObjfromApi.rank] = playerObjfromApi;
-              if (rankArray.length > 20) {
-                break;
-              }
-  
-            }
-            this.setState({
-              items: rankArray
-            })
-            console.log(targetSeason + ' player data posted to database');
-          })
-          .catch(function (error) {
-            console.log('Axios Error.......', error);
-          });
+        this.retrieveAndStoreApiData(targetSeason, targetCategory);
+
       } else {
         // ------ Send data from DB to View --------------------------------------------------
         console.log('Data is being sent from DB')
@@ -117,40 +133,35 @@ class App extends Component {
 
   }
 
+  renderView() {
+    if (this.state.category === 'home') {
+      return <Home />
+    } else if (this.state.category === 'about') {
+      return <About />
+    } else {
+      return <List items={this.state.items} addSeason={this.searchDataBySeason.bind(this)} />
+    }
+  }
+
   render() {
     return (
 
       <div>
         <Navbar category={this.state.category} changeCat={this.changeCategory.bind(this)}/>
-        <div className="header-image">
-        </div>
-
         <div>
-        <Grid>
-          <Row>
-            <Col xs={12} sm={8} smOffset={2}>
-            <Jumbotron>
-              <h1>Hello, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-                <Button bsStyle="primary">Learn more</Button>
-              </p>
-            </Jumbotron>
-            </Col>
-            </Row>
-            <List items={this.state.items}/>
-          </Grid>
+          <Image src="assets/lin-header.jpg" className="header-image" />        
+          {this.renderView()}    
         </div>
-        
       </div>
     )
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+/* <div className="header-image">
+</div> */
 
 //<div>
 //<nav>

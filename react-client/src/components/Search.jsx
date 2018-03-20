@@ -26,34 +26,28 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        <h5>Points Leaders</h5>
-        <h5>Enter Season</h5>
+
+      <div id="custom-search-input">
         <form onSubmit={this.handleSearch.bind(this)}>
-          <div>
-            <input type="text" ref={(input) => this.seasonDate = input} placeholder="ex: 2016-17"/>
-            <input type="submit" value="Search" />
+          <div className="input-group">
+              <input type="text" ref={(input) => this.seasonDate = input} className="form-control" placeholder="ex: 2016-17" />
+              <span className="input-group-btn">
+                  <button className="btn btn-info btn-lg" type="submit">
+                      <i className="glyphicon glyphicon-search"></i>
+                  </button>
+              </span>
           </div>
         </form>
-        <br />
-        <h5>Assist Leaders</h5>
-        <h5>Enter Season</h5>
-        Search Field
-        <br />
-        <br />
-        <h5>Rebound Leaders</h5>
-        <h5>Enter Season</h5>
-        Search Field
-        <br />
-        <br />
-        <h5>Steals Leaders</h5>
-        <h5>Enter Season</h5>
-        Search Field
-        <br />
       </div>
     ) 
   }
 }
   
 // <button onClick={this.search.bind(this), () => this.props.updateList()}> Add Repos </button>
+/* <form onSubmit={this.handleSearch.bind(this)}>
+<div>
+  <input type="text" ref={(input) => this.seasonDate = input} placeholder="ex: 2016-17"/>
+  <input type="submit" value="Search" />
+</div>
+</form> */
 export default Search;

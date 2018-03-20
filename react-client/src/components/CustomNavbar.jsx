@@ -19,7 +19,12 @@ export default class CustomNavbar extends Component {
         <Navbar.Collapse>
           <Nav pullRight>
             <NavItem eventKey={1} href="#">
-              Home
+            <span className={this.props.category === 'home'
+                ? 'nav-selected'
+                : 'nav-unselected'}
+                onClick={() => this.props.changeCat('home', 'Home')}>
+                Home
+              </span>
             </NavItem>
             <NavItem eventKey={2} href="#">
               <span className={this.props.category === 'PTS'
