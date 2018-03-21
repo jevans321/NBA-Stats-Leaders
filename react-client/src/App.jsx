@@ -26,34 +26,23 @@ class App extends Component {
       items: [],
       fetchInProgress: false
     }
-
-    //this.changeCategory = this.changeCategory.bind(this);
   }
 
   changeCategory(categoryVal, headerVal) {
     this.setState({
       category: categoryVal,
       header: headerVal
-      //view: viewVal
     });
     if(categoryVal !== 'home' && categoryVal !== 'about'){
       this.getPlayerData("2017-18", categoryVal);
     }
-    // console.log('state items array: ', this.state.items);
-    // console.log('changeCat State Category: ', this.state.category);
-    // console.log('changeCat State Header: ', this.state.header);
-    
   }
-
-  // componentDidMount() {
-  //   // Get player data from database to show default PTS Leaders content on initial page load
-  //   //this.getPlayerData("2016-17");
-  // }
 
   searchDataBySeason(targetSeason) {
     this.getPlayerData(targetSeason, this.state.category);
   }
 
+  // This is a helper function for the getPlayerData() function below it. It makes the API request 
   retrieveAndStoreApiData(targetSeason, targetCategory) {
     axios.post('/player-data', {
       season: targetSeason,
@@ -99,9 +88,10 @@ class App extends Component {
       });
   }
 
+  // This function retrieves statistics data and sends it to the view by updating the state
   getPlayerData(targetSeason, targetCategory) {
 
-    // before making call, set fetch flag
+    // before making call, set fetch flag (for loading spinner gif)
     this.setState({ fetchInProgress: true });
 
     axios.get('/player-data', {
@@ -176,26 +166,3 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
-/* <div className="header-image">
-</div> */
-
-//<div>
-//<nav>
-  //<Search addSeason={this.handleAddSeason.bind(this)} />
-//</nav>
-//<article>
-//<h1>Rankings</h1>
-//<List items={this.state.items}/>
-//</article>
-//</div>
-
-/* <Router>
-<div>
-  <Route exact path="/" component={Home} />
-  <Route path="/about" component={About} /> 
-  <Route path="/points" component={Points} />  
-  <Route path="/assists" component={assists} />      
-</div>
-</Router> */

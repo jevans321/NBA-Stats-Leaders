@@ -20,10 +20,11 @@ Verify that MongoDB has started successfully by checking the process output for 
 Start Mongo Shell
 $ mongo --host 127.0.0.1:27017
 
-> db.pointsleaders.find()
+> db.playerstats.find()
 Empty collection
-> db.pointsleaders.remove({})
-
+> db.playerstats.remove({})
+Remove collection
+> db.playerstats.drop()
 
 
 

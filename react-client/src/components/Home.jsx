@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
-import $ from 'jquery';
-import List from './List.jsx';
-import Search from './Search.jsx';
-import axios from 'axios';
 
 
 export default class Home extends Component {
@@ -13,8 +8,9 @@ export default class Home extends Component {
       <Grid>
         <Jumbotron>
           <h2>Welcome to NBA Stats Leaders</h2>
+          <h3><i>See where the all-time top players are ranked</i></h3>
           <p>
-            Search the NBA's leading statistical categories from the current season, all the way back to the 1946-47 season. See where the all-time top players are ranked.
+            Search the NBA's leading statistical categories from the current season, all the way back to the first 1946-47 season.
           </p>
           <p className="btn-toolbar">
             <Button bsStyle="primary" onClick={() => this.props.changeCat('PTS', 'Points Leaders')} >Start Searching</Button>
@@ -25,9 +21,3 @@ export default class Home extends Component {
     )
   }
 }
-
-/* <p>        
-<Link to="/about">
-    <Button bsStyle="primary">About</Button>
-</Link>
-</p> */

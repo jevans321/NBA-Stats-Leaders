@@ -45,13 +45,4 @@ class ListItem extends React.Component {
   }
 }
 
-// const ListItem = (props) => (
-//   <div>
-//     <span><h3>Ranked { props.item.rank }</h3></span> <span> { props.item.season } Season </span>
-//     <span><h4>{ props.item.player }</h4> </span>
-//     <span><img src="https://i.ytimg.com/vi/tYdWvjwAs58/hqdefault.jpg" alt="" /></span><br /><br />
-    
-//   </div>
-// )
-
 export default ListItem;

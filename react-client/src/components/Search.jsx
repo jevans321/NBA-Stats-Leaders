@@ -1,15 +1,10 @@
 import React from 'react';
 
-// on link click
-  // check mongodb for 
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   term: ''
-    // }
-    //this.onChange = this.onChange.bind(this);
+
   }
 
   handleSearch(e) {
@@ -20,7 +15,6 @@ class Search extends React.Component {
       alert('NBA Season is required');
     } else {
       this.props.addSeason(seasonDate);
-      //console.log(seasonDate);
     }
   }
 
@@ -43,11 +37,4 @@ class Search extends React.Component {
   }
 }
   
-// <button onClick={this.search.bind(this), () => this.props.updateList()}> Add Repos </button>
-/* <form onSubmit={this.handleSearch.bind(this)}>
-<div>
-  <input type="text" ref={(input) => this.seasonDate = input} placeholder="ex: 2016-17"/>
-  <input type="submit" value="Search" />
-</div>
-</form> */
 export default Search;

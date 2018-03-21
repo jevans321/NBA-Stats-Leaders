@@ -2,13 +2,9 @@
   width: 100%;
   margin-top: -2em;
   margin-bottom: 2em;
-  /* background-image: url(http://images.performgroup.com/di/library/omnisport/92/8a/lin-jeremy-usnews-getty-ftr_1hu0s4ebohsuj1ljgmbg64x2jk.jpg?t=-875954615);
-  background-position-y: -26em; */
-
   background-position: center;
   background-repeat:   no-repeat;
   background-size: 100% auto;
-
   height: 300px;
 }
 
@@ -52,13 +48,11 @@
     border: solid 1px #E4E4E4;
     border-radius: 6px;
     background-color: #fff;
-    /* height: 90px; */
 }
 
 #custom-search-input input{
     border: 0;
     box-shadow: none;
-    /* padding: 3px 8px 2px 10px; */
     font-size: 50px;
     height: 90px;
 }
@@ -84,7 +78,6 @@
 }
 
 .footer {
-    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
@@ -94,75 +87,3 @@
     color: black;
     text-align: center;
 }
-
-
-/* .input-text{
-    font-size: 50px;
-} */
-
-/* body {
-  background: black;
-}
-
-div.container {
-    width: 730px;
-    background-color: white;
-    border: 3px solid red;
-}
-
-header, footer {
-    padding: 1em;
-    color: lightgray;
-    clear: left;
-    text-align: center;
-}
-
-nav {
-    float: left;
-    max-width: 200px;
-    margin: 0;
-    padding: 1em;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-   
-nav ul a {
-    text-decoration: none;
-}
-
-article {
-    margin-left: 170px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
-}
-
-.main {
-  margin: 20px;
-}
-
-.nav {
-    background-color: #3498DB;
-    margin: 0px;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.nav-selected {
-    padding: 5px;
-    color: white;
-    font-weight: bold;
-    margin-right: 5px;
-    font-size: 1.1em;
-}
-
-.nav-unselected {
-    padding: 5px;
-    margin-right: 5px;
-    font-size: 1.1em;
-  } */

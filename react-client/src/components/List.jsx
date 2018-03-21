@@ -23,5 +23,5 @@ const List = (props) => (
     <Footer />
   </div>
 )
-// There are { props.items.length } items.
+
 export default List;
