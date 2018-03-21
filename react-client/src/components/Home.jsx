@@ -14,7 +14,7 @@ export default class Home extends Component {
         <Jumbotron>
           <h2>Welcome to NBA Stats Leaders</h2>
           <p>
-            Search the NBA's leading statistical categories from the current season, all the way back to the 1946-47 season. See where the top players are ranked.
+            Search the NBA's leading statistical categories from the current season, all the way back to the 1946-47 season. See where the all-time top players are ranked.
           </p>
           <p className="btn-toolbar">
             <Button bsStyle="primary" onClick={() => this.props.changeCat('PTS', 'Points Leaders')} >Start Searching</Button>

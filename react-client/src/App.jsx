@@ -160,9 +160,10 @@ class App extends Component {
     return (
 
       <div>
+        <a name="top"></a>
         <Navbar category={this.state.category} changeCat={this.changeCategory.bind(this)}/>
         <div>
-          <Image src="assets/lin-header.jpg" className="header-image" />
+          <Image src="assets/lin-back.jpg" className="header-image" />
           {
             this.state.fetchInProgress
                 ? <Spinner />
