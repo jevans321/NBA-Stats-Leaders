@@ -17,3 +17,9 @@ react-bootstrap
 Express
 
 Axios
+
+
+![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nbastatshome.png)
+
+
+![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nbastats-points.png)
