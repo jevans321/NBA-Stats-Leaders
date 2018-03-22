@@ -2,9 +2,42 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const data = require('../react-client/src/data/data');
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var dbItems = require('../database-mysql');
 var dbItems = require('../database-mongo');
+//const GoogleImages = require('google-images');
+
+// const client = new GoogleImages('013123080131467633086:8s2btvvpgbq', 'AIzaSyDmzv1XHCZgara3-xMtmgTAM_guU7ihZ-Y');
+// client.search('Steve Angello')
+//     .then(images => {
+//       console.log('GoogleImages: ', images);
+//         /*
+//         [{
+//             "url": "http://steveangello.com/boss.jpg",
+//             "type": "image/jpeg",
+//             "width": 1024,
+//             "height": 768,
+//             "size": 102451,
+//             "thumbnail": {
+//                 "url": "http://steveangello.com/thumbnail.jpg",
+//                 "width": 512,
+//                 "height": 512
+//             }
+//         }]
+//          */
+//     })
+//     .catch(function (error) {
+//       console.log('GoogleImages Error: ', error);
+//     });
+
+// gis('cats', logResults);
+
+// function logResults(error, results) {
+//   if (error) {
+//     console.log(error);
+//   }
+//   else {
+//     console.log('Gis Image Array: ', JSON.stringify(results, null, '  '));
+//   }
+// }
 
 var app = express();
 
@@ -39,7 +72,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
     if (error) {
       return callback(error);
     }
-    //console.log('Body from request.get:......', JSON.parse(body));
+    // console.log('Body from request.get:......', JSON.parse(body));
     callback(null, JSON.parse(body)); 
     //console.log('GET API body:.............', JSON.parse(body));
     //dbItems.createAndSaveDocuments(daJSON.parse(body)ta);
@@ -63,9 +96,89 @@ app.post('/player-data', (req, res) => {
     if(err) {
       console.log(err);
     } else {
-      //console.log('API body: ', body);
-      dbItems.createAndSaveDocuments(body);
-      res.send(body);
+      //console.log('fetchAPIData body: ', body);
+
+
+      let rankArray = [];
+      let playersApiArray = body.resultSet.rowSet;
+      for (var i = 0; i < playersApiArray.length; i++) {
+
+        let player = playersApiArray[i];
+
+        let playerObjfromApi = {
+          playerId:   player[0],
+          season:     season,
+          rank:       player[1],
+          player:     player[2],
+          team:       player[3],
+          points:     player[player.length - 2],
+          assists:    player[player.length - 6],
+          blocks:     player[player.length - 4],
+          rebounds:   player[player.length - 7],
+          efficiency: player[player.length - 1],
+          category:   category
+        }
+        rankArray.push(playerObjfromApi);
+     
+        if (rankArray.length > 50) {
+          break;
+        }
+      }
+      //dbItems.createAndSaveDocuments(body);
+      res.send(rankArray);
+
+      // // --------------  1  ----------------
+      // var promise1 = new Promise(function(resolve, reject) {
+        
+      //   for (var i = 0; i < playersApiArray.length; i++) {
+
+      //     let player = playersApiArray[i];
+      //     // get player image from Google Images 
+      //     //console.log('Player Name index 2: ', player[2]);
+
+
+      //     client.search(player[2])
+      //     .then(images => {
+      //       console.log('GoogleImages: ', images[0].thumbnail.url);
+ 
+      //       let playerObjfromApi = {
+      //         playerId:   player[0],
+      //         season:     season,
+      //         rank:       player[1],
+      //         player:     player[2],
+      //         team:       player[3],
+      //         points:     player[player.length - 2],
+      //         assists:    player[player.length - 6],
+      //         blocks:     player[player.length - 4],
+      //         rebounds:   player[player.length - 7],
+      //         efficiency: player[player.length - 1],
+      //         category:   category,
+      //         image:      images[0].thumbnail.url
+      //       }
+      //       //console.log('Inside Google Img Func - Rank Array: ', rankArray);
+      //       //rankArray[playerObjfromApi.rank] = playerObjfromApi;
+
+      //       // --------------  3  ----------------
+      //       rankArray.push(playerObjfromApi);
+
+      //     });
+
+      //     if (rankArray.length > 50) {
+      //       break;
+      //     }
+
+      //   }
+      //   //console.log('Inside Promise before Resolve rankArray: ', rankArray);
+      //   resolve(rankArray);
+      // });
+      // promise1.then(function(value) {
+      //   //console.log('In Promise - Resolved value: ', value);
+      //   // res.send(rankArray);
+      //   // expected output: "Success!"
+      // });
+      //   //dbItems.createAndSaveDocuments(body);
+      // // --------------  4  ----------------
+      
     }
   });
 });

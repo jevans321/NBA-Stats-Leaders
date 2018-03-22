@@ -11,6 +11,8 @@ import Spinner from './components/Spinner.jsx';
 import axios from 'axios';
 import GoogleImages from 'google-images';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
+
+
 //const GoogleImages = require('google-images');
 // const got = require('got');
 
@@ -51,34 +53,10 @@ class App extends Component {
       .then((apiObj) => {
         // ------------ Immediately send data from API to the View -------------
         console.log('API Object: ', apiObj.data);
-        let rankArray = [];
-        let playersApiArray = apiObj.data.resultSet.rowSet;
-
-        for (var i = 0; i < playersApiArray.length; i++) {
-          let player = playersApiArray[i];
-          let playerObjfromApi = {
-            playerId:   player[0],
-            season:     targetSeason,
-            rank:       player[1],
-            player:     player[2],
-            team:       player[3],
-            points:     player[player.length - 2],
-            assists:    player[player.length - 6],
-            blocks:     player[player.length - 4],
-            rebounds:   player[player.length - 7],
-            efficiency: player[player.length - 1],
-            category:   targetCategory
-          }
-
-          rankArray[playerObjfromApi.rank] = playerObjfromApi;
-          if (rankArray.length > 50) {
-            break;
-          }
-
-        }
+        
         this.setState({
           fetchInProgress: false,
-          items: rankArray
+          items: apiObj.data
         })
         console.log(targetSeason + ' player data posted to database');
       })
