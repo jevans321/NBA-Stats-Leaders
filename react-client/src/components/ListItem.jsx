@@ -2,7 +2,6 @@ import React from 'react';
 import GoogleImageSearch from 'free-google-image-search'
 
 
-
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
@@ -14,21 +13,22 @@ class ListItem extends React.Component {
   }
 
   createThumbnails() {
-    GoogleImageSearch.searchImage(this.props.item.player)
-      .then((res) => {
-       // console.log('GIS Images: ', res[0]); // This will return array of image URLs
-        this.setState({ thumbnail: res[0] });
+    // GoogleImageSearch.searchImage(this.props.item.player)
+    //   .then((res) => {
+    //    //console.log('GIS Image URL: ', res[0]); // This will return array of image URLs
+    //     this.setState({ thumbnail: res[0] });
         
-      })
-      .catch(function (error) {
-        console.log('GoogleImageSearch Error.......', error);
+    //   })
+    //   .catch(function (error) {
+    //     console.log('GoogleImageSearch Error.......', error);
        
-      });
+    //   });
+      
   }
 
   render () {
     //console.log('List Item props item: ', this.props.item);
-    this.createThumbnails();
+    //this.createThumbnails();
     var totals;
     if(this.props.item.category === 'PTS') {
       totals = this.props.item.points + ' ' + 'Points | Game';
@@ -52,7 +52,7 @@ class ListItem extends React.Component {
           <span><h5>{ this.props.item.team } </h5></span>
           
         </span>
-        <span><img src={ this.state.thumbnail } alt="" /></span>
+        <span><img src={ this.props.item.image } alt="" /></span>
       </div>
     )
   }

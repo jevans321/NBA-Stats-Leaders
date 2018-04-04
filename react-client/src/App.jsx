@@ -52,7 +52,7 @@ class App extends Component {
     })
       .then((apiObj) => {
         // ------------ Immediately send data from API to the View -------------
-        console.log('API Object: ', apiObj.data);
+        console.log('API Object or Array whatever: ', apiObj.data);
         
         this.setState({
           fetchInProgress: false,

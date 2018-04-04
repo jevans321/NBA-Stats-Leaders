@@ -22,7 +22,8 @@ var playerStatsSchema = mongoose.Schema({
   blocks:     Number,
   rebounds:   Number,
   efficiency: Number,
-  category:   String
+  category:   String,
+  image:      String
 });
 
 // create 'model' class so you can construct 'documents'
@@ -31,27 +32,28 @@ var PlayerStats = mongoose.model('PlayerStats', playerStatsSchema);
 
 // save data to DB
 // create a function that does the below tasks:
-var createAndSaveDocuments = function(leaderObject) {
-  console.log('Leader Object Cat: ', leaderObject.parameters.StatCategory);
-  console.log('Leader Obj all Params: ', leaderObject.parameters);
+var createAndSaveDocuments = function(playersArray) {
+  // console.log('Leader Object Cat: ', leaderObject.parameters.StatCategory);
+  // console.log('Leader Obj all Params: ', leaderObject.parameters);
   // - creates documents from model class for each player from api data array
-  let playersArray = leaderObject.resultSet.rowSet;
+  // let playersArray = leaderObject.resultSet.rowSet;
+
   playersArray.forEach((player) => {
 
     let name = player.playerId;
-    name = new PlayerStats({ 
-      playerId:   player[0],
-      season:     leaderObject.parameters.Season, // !!!!!!!! WILL NEED TO UPDATE VALUE!!!!!!
-      rank:       player[1],
-      player:     player[2],
-      team:       player[3],
-      points:     player[player.length - 2],
-      assists:    player[player.length - 6],
-      blocks:     player[player.length - 4],
-      rebounds:   player[player.length - 7],
-      efficiency: player[player.length - 1],
-      category:   leaderObject.parameters.StatCategory
-    });
+    name = new PlayerStats(player);
+
+    //   playerId:   player.playerId,
+    //   season:     player.season, // !!!!!!!! WILL NEED TO UPDATE VALUE!!!!!!
+    //   rank:       player.rank,
+    //   player:     player.player,
+    //   team:       player.team,
+    //   points:     player.points,
+    //   assists:    player.assists,
+    //   blocks:     player.blocks,
+    //   rebounds:   player.rebounds,
+    //   efficiency: player.efficiency,
+    //   category:   player.category
     
     // - stores each document to mongodb
     // PlayerStats.update({ playerId: player[0] }, name, { upsert: true }, (err, name) => {
