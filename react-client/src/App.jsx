@@ -9,14 +9,7 @@ import Search from './components/Search.jsx';
 import Navbar from './components/CustomNavbar.jsx';
 import Spinner from './components/Spinner.jsx';
 import axios from 'axios';
-import GoogleImages from 'google-images';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
-
-
-//const GoogleImages = require('google-images');
-// const got = require('got');
-
-//const client = new GoogleImages('013123080131467633086:8s2btvvpgbq', 'AIzaSyDmzv1XHCZgara3-xMtmgTAM_guU7ihZ-Y');
 
 
 class App extends Component {
@@ -51,9 +44,8 @@ class App extends Component {
       category: targetCategory
     })
       .then((apiObj) => {
-        // ------------ Immediately send data from API to the View -------------
-        console.log('API Object or Array whatever: ', apiObj.data);
         
+        // ------------ Immediately send data from API to the View -------------
         this.setState({
           fetchInProgress: false,
           items: apiObj.data

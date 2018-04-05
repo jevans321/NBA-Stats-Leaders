@@ -9,12 +9,43 @@
 }
 
 .jumbotron {
-  margin-top: -2em;
-  background-color: #f5f5f5;
-  background-position: center;
-  background-repeat:   no-repeat;
-  background-size: 100% auto;
+    margin-top: -2em;
+    margin-bottom: 0;
+    background-color: #f5f5f5;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 210px;
+    padding-top: 4px;
   
+}
+
+.header-text {
+    margin: -1em 0 24px 0;
+}
+
+.home-menu {
+    background-color: white;
+    margin: 0 0.2% 0 1.4%;
+    padding: 0px 0px 0px 0px;
+    height: 295px;
+    width: 160px;
+}
+
+.home-menu-div {
+    background-color: black;
+    border-bottom: 6px solid gold;
+    height: 340px;
+    padding: 21px 0 0 130px;
+    margin-bottom: 20px;
+}
+
+.home-menu-button {
+    margin-top: 6px;
+}
+
+.border-test {
+    border: 2px solid gold;
 }
 
 .rank-list-item {
@@ -22,18 +53,26 @@
     display: inline-block;
     width: 110px;
     height: 120px;
-    margin: 13px 0 10px 0;
-    padding: 0px 0 10px 0;
+    margin-top: 40px;
 }
 
 .list-item {
+    display: inline-block;
+    vertical-align: middle;
+    width: 160px;
+    height: 120px;
+    margin: 13px 0 10px 0;
+    padding-left: 17px;
+    border-left: 2px solid #DCDCDC;
+}
+.image-item {
     vertical-align: top;
     display: inline-block;
     vertical-align: middle;
     width: 200px;
-    height: 120px;
-    margin: 13px 0 10px 0;
-    padding: 10px 0 10px 17px;
+    height: 170px;
+    margin: 14px 0 10px 0;
+    padding-left: 16px;
     border-left: 2px solid #DCDCDC;
 }
 

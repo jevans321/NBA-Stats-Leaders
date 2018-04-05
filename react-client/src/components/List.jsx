@@ -17,7 +17,6 @@ const List = (props) => (
           <h1>{props.appState.header}</h1>
           {props.appState.items.map(item => <ListItem item={item}/>)}
         </Col>
-
       </Row>            
     </Grid>
     <Footer />
