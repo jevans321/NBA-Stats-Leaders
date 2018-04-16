@@ -17,9 +17,6 @@ This application allows a user to search which players lead in specific NBA stat
 [github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js
 ](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js)
 
-### Data Generation Script
-[github.com/jevans321/NetflixClone-Users-Licensing-Microservice/blob/master/feat/dataGen.js](https://github.com/jevans321/NetflixClone-Users-Licensing-Microservice/blob/master/feat/dataGen.js)
-
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_home040418.png)
 
 
