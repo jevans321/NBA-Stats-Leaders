@@ -1,5 +1,5 @@
 # NBA Stats Leaders
-This application allows a user to search which players lead in specific NBA statistical categories. Searches are done by NBA season. Seasons can be searched from the first season in 1946 to the current season.
+This is a full-stack React web app that allows a user to search which players lead in specific NBA statistical categories. Searches are done by NBA season. Seasons can be searched from the first season in 1946 to the current season.
 
 ### Tech Stack:
 * Node.JS<br/>
