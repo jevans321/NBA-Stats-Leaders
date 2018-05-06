@@ -19,6 +19,7 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 // function that retrieves data from NBA API
 var fetchApiData = function(targetSeason, targetCategory, callback) {
+  console.log('inside actual fetchApiData function');
   let options = {
     url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
     headers: {
@@ -30,6 +31,8 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
   };
 
   request.get(options, (error, response, body) => {
+    console.log('inside get request in fetch function, error: ', error);
+    console.log('inside get request in fetch function, body: ', body);
     if (error) {
       return callback(error);
     }
