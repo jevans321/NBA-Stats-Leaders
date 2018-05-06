@@ -31,8 +31,6 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
   };
 
   request.get(options, (error, response, body) => {
-    console.log('inside get request in fetch function, error: ', error);
-    console.log('inside get request in fetch function, body: ', body);
     if (error) {
       return callback(error);
     }
@@ -52,7 +50,7 @@ app.post('/player-data', (req, res) => {
 
   fetchApiData(season, category, (err, body) => {
     if(err) {
-      console.log(err);
+      console.log("Error from fetch GET Request: ", err);
     } else {
 
       let rankArray = [];
