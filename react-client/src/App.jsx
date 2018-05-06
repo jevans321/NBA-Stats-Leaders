@@ -8,6 +8,7 @@ import List from './components/List.jsx';
 import Search from './components/Search.jsx';
 import Navbar from './components/CustomNavbar.jsx';
 import Spinner from './components/Spinner.jsx';
+import ProgressBar from './components/ProgressBar.jsx';
 import axios from 'axios';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
 
