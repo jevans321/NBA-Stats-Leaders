@@ -27,6 +27,7 @@
     "axios": "^0.18.0",
     "bing.search": "git://github.com/seomoz/bing-search.git",
     "body-parser": "^1.17.2",
+    "dotenv": "^5.0.1",
     "events": "^2.0.0",
     "express": "^4.15.0",
     "fs": "0.0.1-security",

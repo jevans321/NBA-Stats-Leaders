@@ -6,6 +6,7 @@ const dbItems = require('../database-mongo');
 const Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
+require('dotenv').config();
 
 var app = express();
 
