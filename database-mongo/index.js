@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nba');
+mongoose.connect('mongodb://heroku_f60d9n6j:plmb510fjst71ucoktnot4cm1p@ds113606.mlab.com:13606/heroku_f60d9n6j');
 
 var db = mongoose.connection;
 
