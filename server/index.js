@@ -26,7 +26,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
   let options = {
     url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
     headers: {
-      'User-Agent': ('Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:15.0) Gecko/20100101 Firefox/15.0.1'),
+      'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'),
       'Accept-Encoding': '*',
       'Accept-Language': ('en'),
       'origin': ('http://stats.nba.com')
