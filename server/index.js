@@ -48,14 +48,13 @@ app.post('/player-data', (req, res) => {
   console.log("Post Handler Category: ", category);
 
   fetchApiData(season, category, (err, body) => {
-    console.log("Inside fetchAPIData");
     if(err) {
       console.log(err);
     } else {
 
       let rankArray = [];
       let playersApiArray = body.resultSet.rowSet;
-
+      console.log("Inside fetchAPIData, playersApiArray: ", playersApiArray);
       var promise1 = new Promise(function(resolve, reject) {
         console.log("Inside promise1");
         for (var i = 0; i < playersApiArray.length; i++) {
