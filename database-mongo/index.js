@@ -1,5 +1,22 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_f60d9n6j:plmb510fjst71ucoktnot4cm1p@ds113606.mlab.com:13606/heroku_f60d9n6j');
+
+var uri = 'mongodb://heroku_f60d9n6j:plmb510fjst71ucoktnot4cm1p@ds113606.mlab.com:13606/heroku_f60d9n6j';
+
+var options = {
+  "server" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  },
+  "replset" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  }
+}
+mongoose.connect(uri, options);
 
 var db = mongoose.connection;
 
