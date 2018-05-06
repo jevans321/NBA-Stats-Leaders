@@ -7,7 +7,7 @@ const Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
 require('dotenv').config();
-
+console.log("NODE_DEBUG: ", process.env.NODE_DEBUG);
 var app = express();
 
 // parse application/x-www-form-urlencoded
