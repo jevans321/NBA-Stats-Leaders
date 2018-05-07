@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const data = require('../react-client/src/data/data');
 const dbItems = require('../database-mongo');
-const get = require('simple-get');
 const Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
@@ -33,20 +32,13 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
       'origin': ('http://stats.nba.com')
     }
   };
-  // console.log('options url: ', options.url);
-  // request.get(options, (error, response, body) => {
-  //   if (error) {
-  //     return callback(error);
-  //   }
-  //   callback(null, JSON.parse(body)); 
-  // });
-
-  get.concat('https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S', function (err, res, data) {
-    if (err) throw err;
-    console.log('code: ', res.statusCode); // 200
-    console.log('data: ', data); // Buffer('this is the server response')
-  })
-
+  console.log('options url: ', options.url);
+  request.get(options, (error, response, body) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, JSON.parse(body)); 
+  });
 };
 
 // 'POST Request Handler' to '/player-data' endpoint
