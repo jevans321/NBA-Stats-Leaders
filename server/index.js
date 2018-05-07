@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const data = require('../react-client/src/data/data');
 const dbItems = require('../database-mongo');
+const got = require('got');
 const Scraper = require ('images-scraper')
   , bing = new Scraper.Bing();
 
@@ -32,13 +33,24 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
       'origin': ('http://stats.nba.com')
     }
   };
-  //console.log('options url: ', options.url);
-  request.get('https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S', (error, response, body) => {
-    if (error) {
-      return callback(error);
+  // console.log('options url: ', options.url);
+  // request.get(options, (error, response, body) => {
+  //   if (error) {
+  //     return callback(error);
+  //   }
+  //   callback(null, JSON.parse(body)); 
+  // });
+
+  (async () => {
+    try {
+        const response = await got('https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S');
+        console.log('GOT Body: ', response.body);
+        //=> '<!doctype html> ...'
+    } catch (error) {
+        console.log('GOT Error: ', error.response.body);
+        //=> 'Internal server error ...'
     }
-    callback(null, JSON.parse(body)); 
-  });
+  })();
 };
 
 // 'POST Request Handler' to '/player-data' endpoint

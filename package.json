@@ -32,6 +32,7 @@
     "express": "^4.15.0",
     "fs": "0.0.1-security",
     "get-stream": "^3.0.0",
+    "got": "^8.3.1",
     "http": "0.0.0",
     "https": "^1.0.0",
     "images-scraper": "^2.0.11",
