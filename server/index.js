@@ -27,7 +27,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
     url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
     headers: {
       'User-Agent': ('heroku-cli/5.2.39-010a227 (windows-386) go1.6.2'),
-      'Accept-Encoding': '*',
+      'Accept-Encoding': 'gzip, deflate, compress, exi, identity',
       'Accept-Language': ('en'),
       'origin': ('https://stats.nba.com')
     }
