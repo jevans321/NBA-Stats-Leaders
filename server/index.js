@@ -27,9 +27,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
     url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
     headers: {
       'User-Agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),
-      'Accept-Encoding': '*',
-      'Accept-Language': ('en'),
-      'origin': ('http://stats.nba.com')
+      'Accept-Encoding': '*'
     }
   };
   console.log('options url: ', options.url);
