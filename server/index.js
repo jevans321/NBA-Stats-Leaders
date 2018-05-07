@@ -24,11 +24,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
   console.log('inside actual fetchApiData function, targetCategory: ', targetCategory);
   
   let options = {
-    url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S',
-    headers: {
-      'User-Agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),
-      'Accept-Encoding': '*'
-    }
+    url: 'https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S'
   };
   console.log('options url: ', options.url);
   request.get(options, (error, response, body) => {
