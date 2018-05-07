@@ -29,7 +29,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
       'User-Agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),
       'Accept-Encoding': '*',
       'Accept-Language': ('en'),
-      'origin': ('http://stats.nba.com')
+      'origin': ('https://stats.nba.com')
     }
   };
   console.log('options url: ', options.url);
