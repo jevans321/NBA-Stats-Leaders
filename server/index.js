@@ -21,38 +21,23 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 // function that retrieves data from NBA API
 var fetchApiData = function(targetSeason, targetCategory, callback) {
-  console.log('inside actual fetchApiData function, targetSeason: ', targetSeason);
-  console.log('inside actual fetchApiData function, targetCategory: ', targetCategory);
-  
   let options = {
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',
-      'Accept-Encoding': '*',
+      'Accept-Encoding': 'identity',
       'Accept-Language': ('en'),
       'origin': ('https://stats.nba.com')
     }
   };
-  // console.log('options url: ', options.url);
-  // request.get(options, (error, response, body) => {
-  //   if (error) {
-  //     return callback(error);
-  //   }
-  //   callback(null, JSON.parse(body)); 
-  // });
 
   (async () => {
     try {
         const response = await got('https://stats.nba.com/stats/leagueleaders/?LeagueID=00&PerMode=PerGame&StatCategory=' + targetCategory + '&Season=' + targetSeason + '&SeasonType=Regular%20Season&Scope=S', options);
-        console.log("Body:....... ", response.body);
-        callback(null, JSON.parse(response.body));
-        //=> '<!doctype html> ...'
+        callback(null, JSON.parse(response.body));      
     } catch (error) {
-        console.log(error.response.body);
         callback(error.response.body, null);
-        //=> 'Internal server error ...'
     }
-})();
-
+  })();
 };
 
 // 'POST Request Handler' to '/player-data' endpoint
