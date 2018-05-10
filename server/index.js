@@ -24,7 +24,7 @@ var fetchApiData = function(targetSeason, targetCategory, callback) {
   let options = {
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',
-      'Accept-Encoding': '*',
+      'Accept-Encoding': 'gzip, compress, br, deflate',
       'Accept-Language': ('en'),
       'origin': ('https://stats.nba.com')
     }
@@ -124,6 +124,6 @@ app.get('/player-data', (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT, function() {
   console.log('listening on port ' + process.env.PORT + '!');
 });
