@@ -13,6 +13,8 @@ When a search is made, the mongo database is checked for the statistics data. If
 * React-Bootstrap<br/>
 * Mongo DB<br/>
 * Axios
+* NBA Stats API
+* Bing image scraper
 
 ### API Calls:
 [github.com/jevans321/NBA-Stats-Leaders/blob/master/server/index.js
@@ -26,3 +28,6 @@ When a search is made, the mongo database is checked for the statistics data. If
 
 
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_search_061418.jpg)
+
+
+![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_footer_061418.jpg)
