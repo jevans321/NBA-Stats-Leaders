@@ -24,10 +24,11 @@ When a search is made, the mongo database is checked for the statistics data. If
 [github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js
 ](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js)
 
+### Home Page
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_home_061418.jpg)
 
-
+### Search Results
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_search_061418.jpg)
 
-
+### Footer
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_footer_061418.jpg)
