@@ -9,7 +9,7 @@ export default class CustomNavbar extends Component {
   }
   render() {
     return (
-      <Navbar className="navbar" collapseOnSelect>
+      <Navbar inverse staticTop collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
               NBA STATS LEADERS

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
+import { Grid, Col, Row } from 'react-bootstrap';
 import ListItem from './ListItem.jsx';
 import Search from './Search.jsx';
-import Footer from './Footer.jsx';
 
 
 const List = (props) => (
@@ -19,7 +18,6 @@ const List = (props) => (
         </Col>
       </Row>            
     </Grid>
-    <Footer />
   </div>
 )
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 export default class Spinner extends Component {
   render() {

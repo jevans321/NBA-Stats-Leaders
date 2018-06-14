@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import $ from 'jquery';
 import Home from './components/Home.jsx';
 import About from './components/About.jsx';
 import List from './components/List.jsx';
-import Search from './components/Search.jsx';
 import Navbar from './components/CustomNavbar.jsx';
 import Spinner from './components/Spinner.jsx';
-import ProgressBar from './components/ProgressBar.jsx';
+import Footer from './components/Footer.jsx';
 import axios from 'axios';
 import { Grid, Col, Image, Row, Jumbotron, Button } from 'react-bootstrap';
+import '../dist/styles.css';
 
 
 class App extends Component {
@@ -123,14 +121,13 @@ class App extends Component {
       <div>
         <a name="top"></a>
         <Navbar category={this.state.category} changeCat={this.changeCategory.bind(this)}/>
-        <div>
-        <Image className="" src="assets/os_rob_hdr.jpg" className="header-image" />
-          {
-            this.state.fetchInProgress
-                ? <Spinner />
-                : this.renderView()
-          }   
-        </div>
+        <Image className="header-image" src="assets/os_rob_hdr.jpg"  responsive/>
+        {
+          this.state.fetchInProgress
+              ? <Spinner />
+              : this.renderView()
+        }   
+        <Footer />
       </div>
     );
   }
