@@ -30,5 +30,6 @@ When a search is made, the mongo database is checked for the statistics data. If
 ### Search Results
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_search_061418.jpg)
 
+
 ### Footer
 ![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_footer_061418.jpg)
