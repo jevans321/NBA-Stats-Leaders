@@ -17,7 +17,7 @@ This is a full-stack React web app that allows a user to search which players le
 [github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js
 ](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/database-mongo/index.js)
 
-![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_home040418.png)
+![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_home_061418.jpg)
 
 
-![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_stats040318.png)
+![alt text](https://github.com/jevans321/NBA-Stats-Leaders/blob/master/react-client/dist/assets/nba_search_061418.jpg)
