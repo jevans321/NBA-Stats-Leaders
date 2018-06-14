@@ -123,7 +123,7 @@ app.get('/player-data', (req, res) => {
     }
   });
 });
-
-app.listen(process.env.PORT, function() {
-  console.log('listening on port ' + process.env.PORT + '!');
+// process.env.PORT
+app.listen(3000, function() {
+  console.log('listening on port 3000!');
 });

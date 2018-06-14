@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import '../../dist/styles.css';
 
 export default class CustomNavbar extends Component {
   constructor(props) {
@@ -8,10 +9,10 @@ export default class CustomNavbar extends Component {
   }
   render() {
     return (
-      <Navbar default collapseOnSelect>
+      <Navbar className="navbar" collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-              NBA Stats Leaders
+              NBA STATS LEADERS
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>

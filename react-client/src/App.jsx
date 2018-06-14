@@ -124,7 +124,7 @@ class App extends Component {
         <a name="top"></a>
         <Navbar category={this.state.category} changeCat={this.changeCategory.bind(this)}/>
         <div>
-          <Image src="assets/lin-back.jpg" className="header-image" />
+        <Image className="" src="assets/os_rob_hdr.jpg" className="header-image" />
           {
             this.state.fetchInProgress
                 ? <Spinner />
