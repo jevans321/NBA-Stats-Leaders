@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "angular": "^1.6.3",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bing.search": "git://github.com/seomoz/bing-search.git",
     "body-parser": "^1.17.2",
     "dotenv": "^5.0.1",
